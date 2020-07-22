@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6</title>
+    <style>
+        .normalMode {
+            background-color: white;
+            color: black;
+        }
+
+        .darkMode {
+            background-color: black;
+            color: white;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <main id="mainDiv">
+
+        <p id="time"></p>
+        <p id="title"></p>
+        <h3>Question 1</h3>
+        <button onclick="changeMode();" id="btnMOde">Dark</button>
+        <section>
+            <div>
+
+                <p>
+                    Write a program that will iterate over an array of colors and change the background of the page
+                    after 5 seconds
+                </p>
+                <pre><code>
+                let colorArray = ['Black', 'Green', 'Blue', 'Yellow'];
+                let COunt = 0;
+                let changeBg = (() => {
+        
+                    if (colorArray.length >= COunt) {
+                        document.body.style.backgroundColor = colorArray[COunt];
+                        document.body.style.color = 'white';
+                        document.body.style.fontFamily = 'Helvetica';
+                        COunt += 1;
+                    }
+                });
+                setInterval(changeBg, 5000);
+            </code></pre>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h3>Question 2</h3>
+                <p>Write a program that will display the multiplication table of a number on the webpage in a proper
+                    format. Take the input from the user.
+                    Input - 5
+                    Output - 5 x 1 = 5
+                    5 x 2 = 10
+                    and so on…
+                </p>
+                <input type="number" id="userValue"><br>
+                <button onclick="createTable();">Get Table</button>
+                <div id="displayDiv"></div>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h3>Question 3</h3>
+                <p>
+                    Make a webpage that will ask the name of the user. Then will display a welcome message on the
+                    webpage. Also the webpage should also have a clock.
+                    Using the toggle method of classList add a dark mode feature to the website
+                </p>
+            </div>
+        </section>
+    </main>
+    <script>
+        //First
+        let colorArray = ['cyan', 'Green', 'Blue', 'Yellow'];
+        let COunt = 0;
+        let changeBg = (() => {
+
+            if (colorArray.length >= COunt) {
+                document.body.style.backgroundColor = colorArray[COunt];
+                document.body.style.color = 'white';
+                // document.body.style.fontFamily = 'Helvetica';
+                COunt += 1;
+            }
+        });
+        setInterval(changeBg, 5000);
+
+        //Second
+        function createTable() {
+            let n = document.getElementById('userValue').value;
+
+            for (let i = 1; i <= 10; ++i) {
+                document.getElementById('displayDiv').innerHTML += (n + " x " + i + " = " + n * i + "<br>");
+            }
+        }
+
+        //Third
+
+        const ctime = document.getElementById('time');
+        function clock() {
+            let date = new Date();
+            let time = date.toLocaleTimeString();
+            ctime.innerText = time;
+        }
+
+
+        setInterval(clock, 1000);
+        const title = document.getElementById('title');
+        const name = prompt("Enter your name", "Stanger");
+        title.innerText += `Welcome to the family ${name}`;
+
+        function changeMode() {
+            const attr = document.body;
+            const btn = document.getElementById('btnMOde');
+            if (btn.innerText == "Dark") {
+                btn.innerText = "Normal";
+                attr.classList.add('darkMode');
+                attr.classList.remove('normalMode');
+
+                document.body.style.backgroundColor = "black";
+                document.body.style.color = "white";
+                //attr.classList.toggle('normalMode');
+            }
+            else {
+                btn.innerText = "Dark";
+                attr.classList.remove('darkMode');
+                attr.classList.add('normalMode');
+
+                document.body.style.backgroundColor = "white";
+                document.body.style.color = "black";
+                //attr.classList.toggle('darkMode');
+
+            }
+        }
+    </script>
+</body>
+
+</html>
